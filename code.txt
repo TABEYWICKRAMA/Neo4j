@@ -1,0 +1,10 @@
+remember to 
+	copy the csv file into working dms
+
+
+new code---------
+
+LOAD CSV WITH HEADERS FROM "file:///VERSION_10.csv" as row with row where row.Source is not null
+MERGE (start:trains {Name:row.Source})
+MERGE (destination:trains {Name:row.Target})
+MERGE (start)-[:TO {dist:row.Distance}]->(destination)
